@@ -46,7 +46,6 @@ lower_btn = pygame.Rect(50, 200, 170, 40)
 left = random.choice(people)
 right = get_new_pair(left)
 score = 0
-game_over = False
 result_text = ""
 
 # ---------- GAME LOOP ----------
@@ -58,24 +57,28 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
+        if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = event.pos
 
+            # HIGHER BUTTON
             if higher_btn.collidepoint(mouse_pos):
                 if right[1] >= left[1]:
                     score += 1
                     result_text = "Correct!"
                 else:
                     result_text = "Wrong!"
+                    score = 0
                 left = right
                 right = get_new_pair(left)
 
+            # LOWER BUTTON
             if lower_btn.collidepoint(mouse_pos):
                 if right[1] <= left[1]:
                     score += 1
                     result_text = "Correct!"
                 else:
                     result_text = "Wrong!"
+                    score = 0
                 left = right
                 right = get_new_pair(left)
 
