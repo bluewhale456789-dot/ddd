@@ -46,8 +46,44 @@ people = [
     ("Travis Scott", 12, "travis scott.jpg"),
     ("The Weeknd", 20, "WeekEnd.jpg"),
     ("Zendaya", 17, "Zendaya.jpg"),
-    ("Apple", 48, "APPLE LOGO.png")
+    ("Apple", 48, "APPLE LOGO.png"),
+
+    # New people (I'll add images later)
+    ("LeBron James", 42, "lebron.jpg"),
+    ("Stephen Curry", 38, "curry.jpg"),
+    ("Kendrick Lamar", 30, "kendrick.jpg"),
+    ("J. Cole", 25, "jcole.jpg"),
+    ("Doja Cat", 19, "doja.jpg"),
+    ("Olivia Rodrigo", 21, "olivia.jpg"),
+    ("MrBeast", 55, "mrbeast.jpg"),
+    ("PewDiePie", 50, "pewdiepie.jpg"),
+    ("Kai Cenat", 12, "kai.jpg"),
+    ("21 Savage", 16, "21savage.jpg"),
+    ("SZA", 18, "sza.jpg"),
+    ("Ice Spice", 14, "icespice.jpg"),
+    ("Post Malone", 22, "postmalone.jpg"),
+    ("Dua Lipa", 20, "dualipa.jpg"),
+    ("Rihanna", 40, "rihanna.jpg"),
+    ("Nicki Minaj", 35, "nicki.jpg"),
+    ("Shakira", 28, "shakira.jpg"),
+    ("Ed Sheeran", 33, "edsheeran.jpg"),
+    ("Justin Bieber", 30, "bieber.jpg"),
+    ("Selena Gomez", 29, "selena.jpg"),
+    ("Kylie Jenner", 32, "kylie.jpg"),
+    ("Kim Kardashian", 38, "kimk.jpg"),
+    ("Tom Holland", 26, "tomholland.jpg"),
+    ("Robert Downey Jr.", 50, "rdj.jpg"),
+    ("Chris Hemsworth", 44, "hemsworth.jpg"),
+    ("Dwayne Johnson", 60, "therock.jpg"),
+    ("Kevin Hart", 28, "kevinhart.jpg"),
+    ("Gordon Ramsay", 35, "ramsay.jpg"),
+    ("Markiplier", 22, "markiplier.jpg"),
+    ("Jacksepticeye", 18, "jack.jpg"),
+    ("Neymar Jr.", 33, "neymar.jpg"),
+    ("Kylian Mbappé", 29, "mbappe.jpg"),
+    ("Virgil van Dijk", 18, "vandijk.jpg")
 ]
+
 
 
 def get_new_pair(left):
