@@ -30,24 +30,25 @@ def load_image(path):
 
 # ---------- PEOPLE LIST (MATCHES YOUR FILES) ----------
 people = [
-    ("Taylor Swift", 45, "png-clipart-taylor-swift-taylor-swift.png"),
-    ("Ariana Grande", 22, "Ariana grande.jpg"),
+    ("Taylor Swift", 45, "png-clipart-taylor-swift-taylor-swift-1-thumbnail.png"),
+    ("Ariana Grande", 22, "Ariana grande.webp"),
     ("Bad Bunny", 28, "Bad Bunny.jpg"),
     ("Billie Eilish", 18, "Billie_Eilish_.jpg"),
     ("Cristiano Ronaldo", 40, "CR7.jpg"),
-    ("Drake", 14, "drake.jpg"),
+    ("Drake", 14, "drake.png"),
     ("Elon Musk", 50, "Elon Musk.jpg"),
     ("IShowSpeed", 8, "IshowSpeed.jpg"),
-    ("Kanye West", 11, "kanye.jpg"),
-    ("Lil Uzi Vert", 8, "Li_Uzi_Vert_(2018).jpg"),
+    ("Kanye West", 11, "kanye.png"),
+    ("Lil Uzi Vert", 8, "Lil_Uzi_Vert_(2018).png"),
     ("Lionel Messi", 35, "MESSI.jpg"),
     ("Minecraft", 36, "MINECRAFT.jpg"),
     ("Playboi Carti", 8, "Playboi Carti.jpg"),
     ("Travis Scott", 12, "travis scott.jpg"),
     ("The Weeknd", 20, "WeekEnd.jpg"),
     ("Zendaya", 17, "Zendaya.jpg"),
-    ("Apple", 48, "APPLE LOGO.jpg")
+    ("Apple", 48, "APPLE LOGO.png")
 ]
+
 
 def get_new_pair(left):
     right = random.choice(people)
