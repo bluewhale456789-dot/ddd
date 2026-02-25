@@ -98,12 +98,12 @@ function drawButton(btn, color, text) {
 
 // ------------------ GAME LOOP ------------------
 function draw() {
-    // background color
-    ctx.fillStyle = "green";
+    // Dark background restored
+    ctx.fillStyle = "#141414";
     ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
     // Names
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "white";
     ctx.font = "18px Arial";
     ctx.fillText(left[0], 50, 30);
     ctx.fillText(right[0], 300, 30);
@@ -125,12 +125,12 @@ function draw() {
     drawButton(lowerBtn, "red", "Lower");
 
     // Score
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "white";
     ctx.font = "18px Arial";
     ctx.fillText("Score: " + score, 10, 20);
 
     // Result text
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "white";
     ctx.font = "20px Arial";
     ctx.fillText(resultText, 210, 190);
 
@@ -174,3 +174,4 @@ canvas.addEventListener("mousedown", (e) => {
         right = getRandomPerson(left);
     }
 });
+
