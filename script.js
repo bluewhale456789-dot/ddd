@@ -76,8 +76,8 @@ let left = getRandomPerson(null);
 let right = getRandomPerson(left);
 
 // ------------------ BUTTONS ------------------
-const higherBtn = { x: 400, y: 300, w: 200, h: 50 };
-const lowerBtn = { x: 100, y: 300, w: 200, h: 50 };
+const higherBtn = { x: 420, y: 320, w: 200, h: 50 };
+const lowerBtn = { x: 80, y: 320, w: 200, h: 50 };
 
 // ------------------ IMAGE LOADER ------------------
 function loadImage(src) {
@@ -98,38 +98,37 @@ function drawButton(btn, color, text) {
 
 // ------------------ GAME LOOP ------------------
 function draw() {
-    // Background
     ctx.fillStyle = "#141414";
     ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
-    // Score (moved up)
+    // SCORE (moved WAY up)
     ctx.fillStyle = "white";
+    ctx.font = "24px Arial";
+    ctx.fillText("Score: " + score, 20, 40);
+
+    // NAMES (moved DOWN so they don't overlap)
     ctx.font = "22px Arial";
-    ctx.fillText("Score: " + score, 20, 30);
+    ctx.fillText(left[0], 120, 90);
+    ctx.fillText(right[0], 460, 90);
 
-    // Names (moved down)
-    ctx.font = "20px Arial";
-    ctx.fillText(left[0], 100, 70);
-    ctx.fillText(right[0], 450, 70);
-
-    // Images (bigger canvas = more space)
+    // IMAGES (moved down)
     const leftImg = loadImage(left[2]);
     const rightImg = loadImage(right[2]);
 
-    ctx.drawImage(leftImg, 80, 90, 160, 160);
-    ctx.drawImage(rightImg, 460, 90, 160, 160);
+    ctx.drawImage(leftImg, 100, 110, 170, 170);
+    ctx.drawImage(rightImg, 450, 110, 170, 170);
 
-    // VS (centered perfectly)
+    // VS (perfectly centered)
     ctx.fillStyle = "gray";
-    ctx.font = "28px Arial";
-    ctx.fillText("VS", WIDTH / 2 - 15, 170);
+    ctx.font = "30px Arial";
+    ctx.fillText("VS", WIDTH / 2 - 20, 190);
 
-    // Result text
+    // RESULT TEXT
     ctx.fillStyle = "white";
-    ctx.font = "24px Arial";
-    ctx.fillText(resultText, WIDTH / 2 - 50, 240);
+    ctx.font = "26px Arial";
+    ctx.fillText(resultText, WIDTH / 2 - 60, 260);
 
-    // Buttons
+    // BUTTONS
     drawButton(higherBtn, "green", "Higher");
     drawButton(lowerBtn, "red", "Lower");
 
