@@ -1,4 +1,3 @@
-
 // ------------------ CANVAS SETUP ------------------
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
@@ -77,8 +76,8 @@ let left = getRandomPerson(null);
 let right = getRandomPerson(left);
 
 // ------------------ BUTTONS ------------------
-const higherBtn = { x: 280, y: 200, w: 170, h: 40 };
-const lowerBtn = { x: 50, y: 200, w: 170, h: 40 };
+const higherBtn = { x: 280, y: 220, w: 170, h: 40 };
+const lowerBtn = { x: 50, y: 220, w: 170, h: 40 };
 
 // ------------------ IMAGE LOADER ------------------
 function loadImage(src) {
@@ -99,12 +98,13 @@ function drawButton(btn, color, text) {
 
 // ------------------ GAME LOOP ------------------
 function draw() {
+    // White background
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
     // Names
-    ctx.fillStyle = "white";
-    ctx.font = "22px Arial";
+    ctx.fillStyle = "black";
+    ctx.font = "18px Arial";
     ctx.fillText(left[0], 50, 30);
     ctx.fillText(right[0], 300, 30);
 
@@ -112,23 +112,27 @@ function draw() {
     const leftImg = loadImage(left[2]);
     const rightImg = loadImage(right[2]);
 
-    ctx.drawImage(leftImg, 50, 80, 120, 120);
-    ctx.drawImage(rightImg, 300, 80, 120, 120);
+    ctx.drawImage(leftImg, 50, 60, 120, 120);
+    ctx.drawImage(rightImg, 300, 60, 120, 120);
 
     // VS text
     ctx.fillStyle = "gray";
-    ctx.fillText("VS", 235, 90);
+    ctx.font = "22px Arial";
+    ctx.fillText("VS", 235, 130);
 
     // Buttons
     drawButton(higherBtn, "green", "Higher");
     drawButton(lowerBtn, "red", "Lower");
 
     // Score
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "black";
+    ctx.font = "18px Arial";
     ctx.fillText("Score: " + score, 10, 20);
 
     // Result text
-    ctx.fillText(resultText, 200, 150);
+    ctx.fillStyle = "black";
+    ctx.font = "20px Arial";
+    ctx.fillText(resultText, 210, 190);
 
     requestAnimationFrame(draw);
 }
