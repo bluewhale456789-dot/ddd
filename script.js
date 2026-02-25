@@ -76,8 +76,8 @@ let left = getRandomPerson(null);
 let right = getRandomPerson(left);
 
 // ------------------ BUTTONS ------------------
-const higherBtn = { x: 280, y: 220, w: 170, h: 40 };
-const lowerBtn = { x: 50, y: 220, w: 170, h: 40 };
+const higherBtn = { x: 280, y: 230, w: 170, h: 40 };
+const lowerBtn = { x: 50, y: 230, w: 170, h: 40 };
 
 // ------------------ IMAGE LOADER ------------------
 function loadImage(src) {
@@ -98,27 +98,27 @@ function drawButton(btn, color, text) {
 
 // ------------------ GAME LOOP ------------------
 function draw() {
-    // Dark background restored
+    // Dark background (canvas)
     ctx.fillStyle = "#141414";
     ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
     // Names
     ctx.fillStyle = "white";
     ctx.font = "18px Arial";
-    ctx.fillText(left[0], 50, 30);
-    ctx.fillText(right[0], 300, 30);
+    ctx.fillText(left[0], 50, 25);
+    ctx.fillText(right[0], 300, 25);
 
-    // Images
+    // Images (scaled + higher)
     const leftImg = loadImage(left[2]);
     const rightImg = loadImage(right[2]);
 
-    ctx.drawImage(leftImg, 50, 60, 120, 120);
-    ctx.drawImage(rightImg, 300, 60, 120, 120);
+    ctx.drawImage(leftImg, 50, 50, 110, 110);
+    ctx.drawImage(rightImg, 300, 50, 110, 110);
 
     // VS text
     ctx.fillStyle = "gray";
     ctx.font = "22px Arial";
-    ctx.fillText("VS", 235, 130);
+    ctx.fillText("VS", 235, 115);
 
     // Buttons
     drawButton(higherBtn, "green", "Higher");
@@ -174,4 +174,3 @@ canvas.addEventListener("mousedown", (e) => {
         right = getRandomPerson(left);
     }
 });
-
