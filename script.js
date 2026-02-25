@@ -2,8 +2,8 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const WIDTH = 500;
-const HEIGHT = 300;
+const WIDTH = 700;
+const HEIGHT = 400;
 
 // ------------------ GAME VARIABLES ------------------
 let score = 0;
@@ -76,8 +76,8 @@ let left = getRandomPerson(null);
 let right = getRandomPerson(left);
 
 // ------------------ BUTTONS ------------------
-const higherBtn = { x: 280, y: 230, w: 170, h: 40 };
-const lowerBtn = { x: 50, y: 230, w: 170, h: 40 };
+const higherBtn = { x: 400, y: 300, w: 200, h: 50 };
+const lowerBtn = { x: 100, y: 300, w: 200, h: 50 };
 
 // ------------------ IMAGE LOADER ------------------
 function loadImage(src) {
@@ -92,47 +92,46 @@ function drawButton(btn, color, text) {
     ctx.fillRect(btn.x, btn.y, btn.w, btn.h);
 
     ctx.fillStyle = "white";
-    ctx.font = "20px Arial";
-    ctx.fillText(text, btn.x + 55, btn.y + 25);
+    ctx.font = "22px Arial";
+    ctx.fillText(text, btn.x + 60, btn.y + 32);
 }
 
 // ------------------ GAME LOOP ------------------
 function draw() {
-    // Dark background (canvas)
+    // Background
     ctx.fillStyle = "#141414";
     ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
-    // Names
+    // Score (moved up)
     ctx.fillStyle = "white";
-    ctx.font = "18px Arial";
-    ctx.fillText(left[0], 50, 25);
-    ctx.fillText(right[0], 300, 25);
+    ctx.font = "22px Arial";
+    ctx.fillText("Score: " + score, 20, 30);
 
-    // Images (scaled + higher)
+    // Names (moved down)
+    ctx.font = "20px Arial";
+    ctx.fillText(left[0], 100, 70);
+    ctx.fillText(right[0], 450, 70);
+
+    // Images (bigger canvas = more space)
     const leftImg = loadImage(left[2]);
     const rightImg = loadImage(right[2]);
 
-    ctx.drawImage(leftImg, 50, 50, 110, 110);
-    ctx.drawImage(rightImg, 300, 50, 110, 110);
+    ctx.drawImage(leftImg, 80, 90, 160, 160);
+    ctx.drawImage(rightImg, 460, 90, 160, 160);
 
-    // VS text
+    // VS (centered perfectly)
     ctx.fillStyle = "gray";
-    ctx.font = "22px Arial";
-    ctx.fillText("VS", 235, 115);
+    ctx.font = "28px Arial";
+    ctx.fillText("VS", WIDTH / 2 - 15, 170);
+
+    // Result text
+    ctx.fillStyle = "white";
+    ctx.font = "24px Arial";
+    ctx.fillText(resultText, WIDTH / 2 - 50, 240);
 
     // Buttons
     drawButton(higherBtn, "green", "Higher");
     drawButton(lowerBtn, "red", "Lower");
-
-    // Score
-    ctx.fillStyle = "white";
-    ctx.font = "18px Arial";
-    ctx.fillText("Score: " + score, 10, 20);
-
-    // Result text
-    ctx.fillStyle = "white";
-    ctx.font = "20px Arial";
-    ctx.fillText(resultText, 210, 190);
 
     requestAnimationFrame(draw);
 }
