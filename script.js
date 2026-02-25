@@ -99,7 +99,7 @@ function drawButton(btn, color, text) {
 // ------------------ GAME LOOP ------------------
 function draw() {
     // White background
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "grey";
     ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
     // Names
