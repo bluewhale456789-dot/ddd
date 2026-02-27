@@ -2,8 +2,12 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const WIDTH = 800;
-const HEIGHT = 500;
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
 // ------------------ GAME VARIABLES ------------------
 let score = 0;
@@ -11,6 +15,8 @@ let resultText = "";
 
 // ------------------ PEOPLE LIST ------------------
 const people = [
+    ["Selena Gomez", 29, "selena.jpg"],
+    ["SZA", 18, "sza.jpg"],
     ["Ariana Grande", 22, "Ariana grande.webp"],
     ["Lionel Messi", 35, "MESSI.jpg"],
     ["Kai Cenat", 12, "kai.jpg"],
@@ -18,8 +24,7 @@ const people = [
     ["MrBeast", 55, "mrbeast.jpg"],
     ["IShowSpeed", 8, "IshowSpeed.jpg"],
     ["Drake", 14, "drake.png"],
-    ["Taylor Swift", 45, "png-clipart-taylor-swift-taylor-swift-1-thumbnail.png"],
-    // (your full list goes here)
+    ["Taylor Swift", 45, "png-clipart-taylor-swift-taylor-swift-1-thumbnail.png"]
 ];
 
 // ------------------ RANDOM SELECTION ------------------
@@ -34,10 +39,6 @@ function getRandomPerson(exclude) {
 let left = getRandomPerson(null);
 let right = getRandomPerson(left);
 
-// ------------------ BUTTONS ------------------
-const lowerBtn = { x: 150, y: 380, w: 200, h: 60 };
-const higherBtn = { x: 450, y: 380, w: 200, h: 60 };
-
 // ------------------ IMAGE LOADER ------------------
 function loadImage(src) {
     const img = new Image();
@@ -46,50 +47,57 @@ function loadImage(src) {
 }
 
 // ------------------ DRAW BUTTON ------------------
-function drawButton(btn, color, text) {
+function drawButton(x, y, w, h, color, text) {
     ctx.fillStyle = color;
-    ctx.fillRect(btn.x, btn.y, btn.w, btn.h);
+    ctx.fillRect(x, y, w, h);
 
     ctx.fillStyle = "white";
-    ctx.font = "26px Arial";
-    ctx.fillText(text, btn.x + 60, btn.y + 38);
+    ctx.font = `${h * 0.45}px Arial`;
+    ctx.fillText(text, x + w * 0.25, y + h * 0.65);
 }
 
 // ------------------ GAME LOOP ------------------
 function draw() {
+    const W = canvas.width;
+    const H = canvas.height;
+
     ctx.fillStyle = "#141414";
-    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    ctx.fillRect(0, 0, W, H);
 
-    // SCORE (moved high up)
+    // Dynamic sizes
+    const imgSize = Math.min(W, H) * 0.28;
+    const topMargin = H * 0.15;
+
+    // SCORE
     ctx.fillStyle = "white";
-    ctx.font = "28px Arial";
-    ctx.fillText("Score: " + score, 20, 40);
+    ctx.font = `${H * 0.05}px Arial`;
+    ctx.fillText("Score: " + score, 20, H * 0.08);
 
-    // NAMES (moved down)
-    ctx.font = "26px Arial";
-    ctx.fillText(left[0], 120, 100);
-    ctx.fillText(right[0], 520, 100);
+    // NAMES
+    ctx.font = `${H * 0.045}px Arial`;
+    ctx.fillText(left[0], W * 0.18, topMargin);
+    ctx.fillText(right[0], W * 0.68, topMargin);
 
-    // IMAGES (centered vertically)
+    // IMAGES
     const leftImg = loadImage(left[2]);
     const rightImg = loadImage(right[2]);
 
-    ctx.drawImage(leftImg, 100, 130, 200, 200);
-    ctx.drawImage(rightImg, 500, 130, 200, 200);
+    ctx.drawImage(leftImg, W * 0.1, topMargin + 20, imgSize, imgSize);
+    ctx.drawImage(rightImg, W * 0.6, topMargin + 20, imgSize, imgSize);
 
-    // VS (perfect center)
+    // VS (centered)
     ctx.fillStyle = "gray";
-    ctx.font = "34px Arial";
-    ctx.fillText("VS", WIDTH / 2 - 20, 240);
+    ctx.font = `${H * 0.06}px Arial`;
+    ctx.fillText("VS", W / 2 - 20, H / 2);
 
     // RESULT TEXT
     ctx.fillStyle = "white";
-    ctx.font = "30px Arial";
-    ctx.fillText(resultText, WIDTH / 2 - 60, 320);
+    ctx.font = `${H * 0.05}px Arial`;
+    ctx.fillText(resultText, W / 2 - 60, H * 0.65);
 
     // BUTTONS
-    drawButton(lowerBtn, "red", "Lower");
-    drawButton(higherBtn, "green", "Higher");
+    drawButton(W * 0.15, H * 0.75, W * 0.25, H * 0.12, "red", "Lower");
+    drawButton(W * 0.60, H * 0.75, W * 0.25, H * 0.12, "green", "Higher");
 
     requestAnimationFrame(draw);
 }
@@ -98,9 +106,15 @@ draw();
 
 // ------------------ CLICK HANDLER ------------------
 canvas.addEventListener("mousedown", (e) => {
+    const W = canvas.width;
+    const H = canvas.height;
+
     const rect = canvas.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
+
+    const lowerBtn = { x: W * 0.15, y: H * 0.75, w: W * 0.25, h: H * 0.12 };
+    const higherBtn = { x: W * 0.60, y: H * 0.75, w: W * 0.25, h: H * 0.12 };
 
     function inside(btn) {
         return mouseX > btn.x && mouseX < btn.x + btn.w &&
@@ -108,25 +122,15 @@ canvas.addEventListener("mousedown", (e) => {
     }
 
     if (inside(higherBtn)) {
-        if (right[1] >= left[1]) {
-            score++;
-            resultText = "Correct!";
-        } else {
-            score = 0;
-            resultText = "Wrong!";
-        }
+        resultText = right[1] >= left[1] ? "Correct!" : "Wrong!";
+        score = right[1] >= left[1] ? score + 1 : 0;
         left = right;
         right = getRandomPerson(left);
     }
 
     if (inside(lowerBtn)) {
-        if (right[1] <= left[1]) {
-            score++;
-            resultText = "Correct!";
-        } else {
-            score = 0;
-            resultText = "Wrong!";
-        }
+        resultText = right[1] <= left[1] ? "Correct!" : "Wrong!";
+        score = right[1] <= left[1] ? score + 1 : 0;
         left = right;
         right = getRandomPerson(left);
     }
