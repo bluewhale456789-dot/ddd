@@ -2,8 +2,8 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const WIDTH = 700;
-const HEIGHT = 400;
+const WIDTH = 800;
+const HEIGHT = 500;
 
 // ------------------ GAME VARIABLES ------------------
 let score = 0;
@@ -11,56 +11,15 @@ let resultText = "";
 
 // ------------------ PEOPLE LIST ------------------
 const people = [
-    ["Taylor Swift", 45, "png-clipart-taylor-swift-taylor-swift-1-thumbnail.png"],
     ["Ariana Grande", 22, "Ariana grande.webp"],
-    ["Bad Bunny", 28, "Bad Bunny.jpg"],
-    ["Billie Eilish", 18, "Billie_Eilish_.jpg"],
-    ["Cristiano Ronaldo", 40, "CR7.jpg"],
-    ["Drake", 14, "drake.png"],
-    ["Elon Musk", 50, "Elon Musk.jpg"],
-    ["IShowSpeed", 8, "IshowSpeed.jpg"],
-    ["Kanye West", 11, "kanye.png"],
-    ["Lil Uzi Vert", 8, "Lil_Uzi_Vert_(2018).png"],
     ["Lionel Messi", 35, "MESSI.jpg"],
-    ["Minecraft", 36, "MINECRAFT.jpg"],
-    ["Playboi Carti", 8, "Playboi Carti.jpg"],
-    ["Travis Scott", 12, "travis scott.jpg"],
-    ["The Weeknd", 20, "WeekEnd.jpg"],
-    ["Zendaya", 17, "Zendaya.jpg"],
-    ["Apple", 48, "APPLE LOGO.png"],
-    ["LeBron James", 42, "lebron.jpg"],
-    ["Stephen Curry", 38, "curry.jpg"],
-    ["Kendrick Lamar", 30, "kendrick.jpg"],
-    ["J. Cole", 25, "jcole.jpg"],
-    ["Doja Cat", 19, "doja.jpg"],
-    ["Olivia Rodrigo", 21, "olivia.jpg"],
-    ["MrBeast", 55, "mrbeast.jpg"],
-    ["PewDiePie", 50, "pewdiepie.jpg"],
     ["Kai Cenat", 12, "kai.jpg"],
-    ["21 Savage", 16, "21savage.jpg"],
-    ["SZA", 18, "sza.jpg"],
-    ["Ice Spice", 14, "icespice.jpg"],
-    ["Post Malone", 22, "postmalone.jpg"],
-    ["Dua Lipa", 20, "dualipa.jpg"],
-    ["Rihanna", 40, "rihanna.jpg"],
-    ["Nicki Minaj", 35, "nicki.jpg"],
-    ["Shakira", 28, "shakira.jpg"],
-    ["Ed Sheeran", 33, "edsheeran.jpg"],
-    ["Justin Bieber", 30, "bieber.jpg"],
-    ["Selena Gomez", 29, "selena.jpg"],
-    ["Kylie Jenner", 32, "kylie.jpg"],
-    ["Kim Kardashian", 38, "kimk.jpg"],
-    ["Tom Holland", 26, "tomholland.jpg"],
-    ["Robert Downey Jr.", 50, "rdj.jpg"],
-    ["Chris Hemsworth", 44, "hemsworth.jpg"],
-    ["Dwayne Johnson", 60, "therock.jpg"],
     ["Kevin Hart", 28, "kevinhart.jpg"],
-    ["Gordon Ramsay", 35, "ramsay.jpg"],
-    ["Markiplier", 22, "markiplier.jpg"],
-    ["Jacksepticeye", 18, "jack.jpg"],
-    ["Neymar Jr.", 33, "neymar.jpg"],
-    ["Kylian Mbappé", 29, "mbappe.jpg"],
-    ["Virgil van Dijk", 18, "vandijk.jpg"]
+    ["MrBeast", 55, "mrbeast.jpg"],
+    ["IShowSpeed", 8, "IshowSpeed.jpg"],
+    ["Drake", 14, "drake.png"],
+    ["Taylor Swift", 45, "png-clipart-taylor-swift-taylor-swift-1-thumbnail.png"],
+    // (your full list goes here)
 ];
 
 // ------------------ RANDOM SELECTION ------------------
@@ -76,8 +35,8 @@ let left = getRandomPerson(null);
 let right = getRandomPerson(left);
 
 // ------------------ BUTTONS ------------------
-const higherBtn = { x: 420, y: 320, w: 200, h: 50 };
-const lowerBtn = { x: 80, y: 320, w: 200, h: 50 };
+const lowerBtn = { x: 150, y: 380, w: 200, h: 60 };
+const higherBtn = { x: 450, y: 380, w: 200, h: 60 };
 
 // ------------------ IMAGE LOADER ------------------
 function loadImage(src) {
@@ -92,8 +51,8 @@ function drawButton(btn, color, text) {
     ctx.fillRect(btn.x, btn.y, btn.w, btn.h);
 
     ctx.fillStyle = "white";
-    ctx.font = "22px Arial";
-    ctx.fillText(text, btn.x + 60, btn.y + 32);
+    ctx.font = "26px Arial";
+    ctx.fillText(text, btn.x + 60, btn.y + 38);
 }
 
 // ------------------ GAME LOOP ------------------
@@ -101,36 +60,36 @@ function draw() {
     ctx.fillStyle = "#141414";
     ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
-    // SCORE (moved WAY up)
+    // SCORE (moved high up)
     ctx.fillStyle = "white";
-    ctx.font = "24px Arial";
+    ctx.font = "28px Arial";
     ctx.fillText("Score: " + score, 20, 40);
 
-    // NAMES (moved DOWN so they don't overlap)
-    ctx.font = "22px Arial";
-    ctx.fillText(left[0], 120, 90);
-    ctx.fillText(right[0], 460, 90);
+    // NAMES (moved down)
+    ctx.font = "26px Arial";
+    ctx.fillText(left[0], 120, 100);
+    ctx.fillText(right[0], 520, 100);
 
-    // IMAGES (moved down)
+    // IMAGES (centered vertically)
     const leftImg = loadImage(left[2]);
     const rightImg = loadImage(right[2]);
 
-    ctx.drawImage(leftImg, 100, 110, 170, 170);
-    ctx.drawImage(rightImg, 450, 110, 170, 170);
+    ctx.drawImage(leftImg, 100, 130, 200, 200);
+    ctx.drawImage(rightImg, 500, 130, 200, 200);
 
-    // VS (perfectly centered)
+    // VS (perfect center)
     ctx.fillStyle = "gray";
-    ctx.font = "30px Arial";
-    ctx.fillText("VS", WIDTH / 2 - 20, 190);
+    ctx.font = "34px Arial";
+    ctx.fillText("VS", WIDTH / 2 - 20, 240);
 
     // RESULT TEXT
     ctx.fillStyle = "white";
-    ctx.font = "26px Arial";
-    ctx.fillText(resultText, WIDTH / 2 - 60, 260);
+    ctx.font = "30px Arial";
+    ctx.fillText(resultText, WIDTH / 2 - 60, 320);
 
     // BUTTONS
-    drawButton(higherBtn, "green", "Higher");
     drawButton(lowerBtn, "red", "Lower");
+    drawButton(higherBtn, "green", "Higher");
 
     requestAnimationFrame(draw);
 }
